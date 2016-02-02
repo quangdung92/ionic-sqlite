@@ -72,8 +72,8 @@ function LoginController ($scope, $http, $location,$cordovaSQLite) {
   };
 
   $scope.create = function() {
-    var a = "tony stark";
-    var b = "holla hop";
+    var a = "toasdasdny sasdasdtark";
+    var b = "holasdasla hop";
     var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
     $cordovaSQLite.execute(db, query, [a, b]).then(function(res) {
       console.log("INSERT ID -> " + res.insertId);
@@ -83,7 +83,7 @@ function LoginController ($scope, $http, $location,$cordovaSQLite) {
   }
 
   $scope.check = function() {
-    var query = "SELECT *  FROM user";
+    var query = "SELECT *  FROM people";
     $cordovaSQLite.execute(db, query).then(function(res) {
       if(res.rows.length > 0) {
         console.log("ALL we have" + res.rows.item(0).firstname);
