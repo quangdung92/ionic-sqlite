@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <script src="js/ng-cordova.min.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter" class="platform-android platform-cordova platform-webview" ng-controller="TodoCtrl" data-ng-init="check_login()">
+  <ion-nav-view>
+  </ion-nav-view>
+
+  <script type="text/ng-template" id="home.html">
+    <ion-view title="Home">
+      <ion-content style="text-align: center" overflow-scroll="true">
+        <img src="img/logo_main.png" width="350px" height="70" style="margin-top: 30px">
+        <div class="list login-form" style="margin-top: 50px">
+          <label class="item item-input">
+            <input type="text" placeholder="Name" ng-model="data.name">
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Password" ng-model="data.password">
+          </label>
+          <br>
+          <button class="button button-stable" style="width: 100px" ng-click='login()'>
+            Login
+          </button>
+          <button class="button button-stable" style="width: 100px" ng-click='create()'>
+            Create
+          </button>
+          <button class="button button-stable" style="width: 100px" ng-click='check()'>
+            CheckSQL
+          </button>
+        </div>
+
+      </ion-content>
+      <div class="hide-on-keyboard-open">
+        <div class="bar bar-footer bar-calm hide-on-keyboard-open" id="footer-bar-cus">
+          <div class="title" style="margin-top: 25px;font-size: 3em">Admod</div>
+        </div>
+      </div>
+    </ion-view>
+  </script>
+
+    <script type="text/ng-template" id="listmeeting.html">
+      <ion-view title="Meeting">
+        <ion-content padding="true" data-ng-init="init()">
+          <h2>Meetinglist</h2>
+          <p ng-bind="current_user.name"></p>
+          <p ng-bind="current_user.login_id"></p>
+          <p ng-bind="current_user.email"></p>
+          <ion-scroll scrollbar-y="true" style="margin-bottom: 10px;height: 400px; border: 1px dotted">
+            <div class="row responsive-sm" ng-repeat="meeting in list">
+              <div class="col col-center clickable" style="border: 1px solid;background-color: #00ffff" ng-bind="meeting.name" ng-click="getDetail({{meeting.id}})"></div>
+              <p ng-bind="meeting.start_time"></p>
+              <p ng-bind="meeting.venue"></p>
+            </div>
+          </ion-scroll>
+        </ion-content>
+        <div class="bar bar-footer bar-calm hide-on-keyboard-open" style="height: 75px; background-color: white">
+          <div class="title" style="margin-top: 25px;font-size: 3em">
+            <button class="button button-stable" ng-click='createNew()'>
+              Create new Meeting
+            </button>
+            <button class="button button-stable" ng-click='logOut()'>
+              Logout
+            </button>
+          </div>
+        </div>
+      </ion-view>
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,7 @@
+/* Empty. Add your own CSS if you like */
+#footer-bar-cus{
+    height: 125px;
+}
+div.clickable:active {
+    opacity: 0.4;
+}
