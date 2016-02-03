@@ -46,8 +46,17 @@
           <button class="button button-stable" style="width: 100px" ng-click='check()'>
             CheckSQL
           </button>
+          <br>
         </div>
-
+        <ion-scroll scrollbar-y="true" style="margin-bottom: 10px;height: 100px; border: 1px dotted">
+        <div class="row responsive-sm" ng-repeat="user in peoples">
+          <span ng-bind="user.firstname"></span>
+          <span ng-bind="user.lastname"></span>
+        </div>
+        </ion-scroll>
+        <button class="button button-stable" style="width: 100px" ng-click='delete()'>
+          Delete
+        </button>
       </ion-content>
       <div class="hide-on-keyboard-open">
         <div class="bar bar-footer bar-calm hide-on-keyboard-open" id="footer-bar-cus">

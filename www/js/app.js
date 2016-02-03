@@ -72,11 +72,12 @@ function LoginController ($scope, $http, $location,$cordovaSQLite) {
   };
 
   $scope.create = function() {
-    var a = "toasdasdny sasdasdtark";
-    var b = "holasdasla hop";
+    var a = $scope.data.name;
+    var b = $scope.data.password;
     var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
     $cordovaSQLite.execute(db, query, [a, b]).then(function(res) {
       console.log("INSERT ID -> " + res.insertId);
+      $scope.data = {};
     }, function (err) {
       console.error(err);
     });
@@ -86,15 +87,32 @@ function LoginController ($scope, $http, $location,$cordovaSQLite) {
     var query = "SELECT *  FROM people";
     $cordovaSQLite.execute(db, query).then(function(res) {
       if(res.rows.length > 0) {
-        console.log("ALL we have" + res.rows.item(0).firstname);
+        $scope.peoples = [];
+        for (var i = 0; i < res.rows.length; i++) {
+          $scope.peoples.push({
+            "lastname" : res.rows.item(i).lastname,
+            "firstname" : res.rows.item(i).firstname
+          });
+        }
+        console.log("ALL we have" + $scope.peoples);
       } else {
         console.log("No results found");
+        $scope.peoples = [];
       }
     }, function (err) {
       angular.forEach(err, function(value, key) {
         console.log("0112"+ key);
         console.log("1123"+ value);
       });
+    });
+  }
+
+  $scope.delete = function() {
+    var query = "DELETE FROM `people`";
+    $cordovaSQLite.execute(db, query).then(function(res) {
+        console.log("succes"+res);
+    }, function (err) {
+        console.log("fails"+err)
     });
   }
 }
