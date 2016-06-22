@@ -117,6 +117,7 @@ function LoginController ($scope, $http, $location,$cordovaSQLite) {
   }
   $scope.sk = "";
   $scope.checkNormalspeech = function() {
+    $scope.chechbegin = "let start!";
     var recognition = new SpeechRecognition();
     recognition.onresult = function(event) {
       if (event.results.length > 0) {
@@ -126,10 +127,26 @@ function LoginController ($scope, $http, $location,$cordovaSQLite) {
       }
     };
     recognition.start();
-  }
+  };
 
   $scope.checkXspeech = function() {
+    $scope.chechbegin = "let start!";
+    var maxMatches = 5;
+    var language = "en-US";
+    window.plugins.speechrecognizer.start(resultCallback, errorCallback, maxMatches, language);
+  };
 
+  $scope.stopXspeech = function() {
+    window.plugins.speechrecognizer.stop(resultCallback, errorCallback);
+  };
+
+  function resultCallback (result){
+    console.log(result);
+    alert(result.results[0][0].transcript);
+  }
+
+  function errorCallback(error){
+    console.log(error);
   }
 }
 

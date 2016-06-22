@@ -60,13 +60,14 @@
           XSpeech
         </button>
         <button class="button button-stable" style="width: 100px" ng-click='stopXspeech()'>
-          XSpeech
+          StopXSpeech
         </button>
         <button class="button button-stable" style="width: 100px" ng-click='checkNormalspeech()'>
           NSpeech
         </button>
         <br>
         <ion-scroll scrollbar-y="true" style="margin-top: 20px;height: 100px; border: 1px dotted">
+          <span ng-bind="chechbegin"></span>
           <div class="row responsive-sm">
             <span ng-bind="sk"></span>
           </div>
