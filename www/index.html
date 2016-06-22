@@ -28,7 +28,6 @@
   <script type="text/ng-template" id="home.html">
     <ion-view title="Home">
       <ion-content style="text-align: center" overflow-scroll="true">
-        <img src="img/logo_main.png" width="350px" height="70" style="margin-top: 30px">
         <div class="list login-form" style="margin-top: 50px">
           <label class="item item-input">
             <input type="text" placeholder="Name" ng-model="data.name">
@@ -57,12 +56,20 @@
         <button class="button button-stable" style="width: 100px" ng-click='delete()'>
           Delete
         </button>
+        <button class="button button-stable" style="width: 100px" ng-click='checkXspeech()'>
+          XSpeech
+        </button>
+        <button class="button button-stable" style="width: 100px" ng-click='checkNormalspeech()'>
+          NSpeech
+        </button>
+        <br>
+        <ion-scroll scrollbar-y="true" style="margin-top: 20px;height: 100px; border: 1px dotted">
+          <div class="row responsive-sm" ng-repeat="user in peoples">
+            <span ng-bind="user.firstname"></span>
+            <span ng-bind="user.lastname"></span>
+          </div>
+        </ion-scroll>
       </ion-content>
-      <div class="hide-on-keyboard-open">
-        <div class="bar bar-footer bar-calm hide-on-keyboard-open" id="footer-bar-cus">
-          <div class="title" style="margin-top: 25px;font-size: 3em">Admod</div>
-        </div>
-      </div>
     </ion-view>
   </script>
 

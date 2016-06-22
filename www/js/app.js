@@ -108,7 +108,7 @@ function LoginController ($scope, $http, $location,$cordovaSQLite) {
   }
 
   $scope.delete = function() {
-    var query = "DELETE FROM `people`";
+    var query = "DELETE * FROM `people`";
     $cordovaSQLite.execute(db, query).then(function(res) {
         console.log("succes"+res);
     }, function (err) {
