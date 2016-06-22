@@ -115,6 +115,22 @@ function LoginController ($scope, $http, $location,$cordovaSQLite) {
         console.log("fails"+err)
     });
   }
+  $scope.sk = "";
+  $scope.checkNormalspeech = function() {
+    var recognition = new SpeechRecognition();
+    recognition.onresult = function(event) {
+      if (event.results.length > 0) {
+        $scope.sk = event.results[0][0].transcript;
+        alert(event.results[0][0].transcript);
+        $scope.$apply()
+      }
+    };
+    recognition.start();
+  }
+
+  $scope.checkXspeech = function() {
+
+  }
 }
 
 function ApiService() {
